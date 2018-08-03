@@ -194,10 +194,22 @@ if(!empty($_SESSION['cart'])){
 						</a>
 					</td>
 					<td class="cart-product-name-info">
-						<h4 class='cart-product-description'><a href="product-details.php?pid=<?php echo htmlentities($pd=$row['id']);?>" ><?php echo $row['productName'];
+						<?php 
+							$topping_list = ' (with ';
+							if($_SESSION['mashroom']=='mashroom')
+							$topping_list = $topping_list.$_SESSION['mashroom']." ";
+							if($_SESSION['tomato']=='tomato')
+							$topping_list = $topping_list.$_SESSION['tomato']." ";
+							$topping_list .= ')';
+
+							if($_SESSION['mashroom']=="" && $_SESSION['tomato']==""){
+								$topping_list = "";
+							}
+						?>
+						<h4 class='cart-product-description'><?php echo $row['productName'].$topping_list;
 
 $_SESSION['sid']=$pd;
-						 ?></a></h4>
+						 ?></h4>
 						<!--<div class="row">
 							<div class="col-sm-4">
 								<div class="rating rateit-small"></div>

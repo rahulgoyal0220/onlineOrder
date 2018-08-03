@@ -354,6 +354,130 @@ if(isset($_POST['submit']))
                                 </div><!-- /.row -->
                             </div>
 
+
+                            <div class="stock-container info-container m-t-10" <?php if ($pid!=21 && $pid!=27 && $pid!=28) echo "hidden";?>>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="stock-box">
+                                            <span class="label">Toppings :</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="stock-box">
+                                            <span class="value">
+                                               
+<label>
+    <input id="t1" type="checkbox" <?php if($_SESSION['mashroom']=='mashroom') echo "checked";?> onclick="check1()" value="Mashroom">Mashroom<br>
+    <input id="t2" type="checkbox" <?php if($_SESSION['tomato']=='tomato') echo "checked";?> onclick="check2()" value="Tomato">Tomato<br>
+    <input hidden id="t3" type="checkbox" onclick="check3()" value="Olive">Olive<br>
+    <input hidden id="t4" type="checkbox" onclick="check4()" value="Jalapeno">Jalapeno<br>
+</label>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#t1").click(function(){
+            var isChecked1 = $('#t1').is(':checked');
+            if(isChecked1){
+                $.post("addTopping.php",
+                {
+                    mashroom: "add_mashroom",
+                },
+                function(data,status){
+                    //alert("Data: " + data + "\nStatus: " + status);
+                });         
+            }else{
+                $.post("addTopping.php",
+                {
+                    mashroom: "remove_mashroom",  
+                },
+                function(data,status){
+                    //alert("Data: " + data + "\nStatus: " + status);
+                });
+            }
+        });
+
+        $("#t2").click(function(){
+            var isChecked2 = $('#t2').is(':checked');
+            if(isChecked2){
+                $.post("addTopping.php",
+                {
+                    tomato: "add_tomato",
+                },
+                function(data,status){
+                    //alert("Data: " + data + "\nStatus: " + status);
+                });         
+            }else{
+                $.post("addTopping.php",
+                {
+                    tomato: "remove_tomato",  
+                },
+                function(data,status){
+                    //alert("Data: " + data + "\nStatus: " + status);
+                });
+            }
+        });
+
+        $("#t3").click(function(){
+            var isChecked3 = $('#t3').is(':checked');
+            if(isChecked3){
+                $.post("",
+                {
+                    olive: "add_olive",
+                },
+                function(data,status){
+                    //alert("Data: " + data + "\nStatus: " + status);
+                });         
+            }else{
+                $.post("storeTopping.php",
+                {
+                    olive: "remove_olive",  
+                },
+                function(data,status){
+                    //alert("Data: " + data + "\nStatus: " + status);
+                });
+            }
+        });
+
+        $("#t4").click(function(){
+            var isChecked4 = $('#t4').is(':checked');
+            if(isChecked4){
+                $.post("",
+                {
+                    jalapeno: "add_jalapeno",
+                },
+                function(data,status){
+                    //alert("Data: " + data + "\nStatus: " + status);
+                });         
+            }else{
+                $.post("storeTopping.php",
+                {
+                    jalapeno: "remove_jalapeno",  
+                },
+                function(data,status){
+                    //alert("Data: " + data + "\nStatus: " + status);
+                });
+            }
+        });
+        
+        
+        
+    });
+    </script>
+
+
+
+
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div><!-- /.row -->
+                            </div>
+
+
                             <div class="price-container info-container m-t-20">
                                 <div class="row">
 
