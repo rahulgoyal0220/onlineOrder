@@ -200,9 +200,8 @@ if(!empty($_SESSION['cart'])){
                                 <?php echo $row['productName'];
 $_SESSION['sid']=$pd;
 						 ?>
-                                <?php echo $row['addOns'];
-                                $_SESSION['sid']=$pd;
-                                ?>
+<br>                                <li>
+                                <?php echo $_SESSION['cart'][$row['id']]['addOn']; ?></li>
                             </a></h4>
 						<!--<div class="row">
 							<div class="col-sm-4">
@@ -277,30 +276,20 @@ while ($rt=mysqli_fetch_array($qry)) {
 </div>
 
 <div class="col-md-4 col-sm-12 estimate-ship-tax">
-	<table class="table table-bordered">
+	<table>
 		<thead>
 			<tr>
-				<th>
-					<span class="estimate-title">Billing Address</span>
-				</th>
+
 			</tr>
 		</thead>
 		<tbody>
 				<tr>
 					<td>
 						<div class="form-group">
-						<?php $qry=mysqli_query($con,"select * from users where id='".$_SESSION['id']."'");
-while ($rt=mysqli_fetch_array($qry)) {
-	echo htmlentities($rt['billingAddress'])."<br />";
-	echo htmlentities($rt['billingCity'])."<br />";
-	echo htmlentities($rt['billingState']);
-	echo htmlentities($rt['billingPincode']);
-}
 
-						?>
-		
+
 						</div>
-					
+
 					</td>
 				</tr>
 		</tbody><!-- /tbody -->
