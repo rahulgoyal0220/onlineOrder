@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2018 at 04:57 AM
+-- Generation Time: Aug 03, 2018 at 05:13 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -97,7 +97,8 @@ INSERT INTO `orders` (`id`, `userId`, `productId`, `quantity`, `orderDate`, `pay
 (8, 4, '15', 1, '2018-08-02 02:16:34', 'COD', NULL),
 (9, 1, '1', 1, '2018-08-02 03:51:49', 'Debit / Credit card', NULL),
 (10, 1, '1', 2, '2018-08-02 04:14:52', 'Debit / Credit card', NULL),
-(11, 6, '21', 4, '2018-08-03 01:45:23', 'Debit / Credit card', NULL);
+(11, 6, '21', 4, '2018-08-03 01:45:23', 'Debit / Credit card', NULL),
+(12, 4, '27', 1, '2018-08-03 03:01:40', 'COD', NULL);
 
 -- --------------------------------------------------------
 
@@ -190,7 +191,13 @@ INSERT INTO `products` (`id`, `category`, `subCategory`, `productName`, `product
 (29, 4, 3, 'Cookie Brownie', 'iEat', 7, 7, 'Cookie Brownie<br>', 'cookie-brownie.jpg', 'cookie-brownie.jpg', '', 0, 'In Stock', '2018-08-02 18:55:36', NULL),
 (30, 4, 3, 'Crunch Cake', 'iEat', 6, 6, 'Crunch Cake<br>', 'crunch-cake.jpg', 'crunch-cake.jpg', '', 0, 'In Stock', '2018-08-02 18:57:17', NULL),
 (31, 5, 9, 'Ginger Ale', 'iEat', 2, 2, 'Ginger Ale', 'ginger-ale.jpg', 'ginger-ale.jpg', 'ginger-ale.jpg', 0, 'In Stock', '2018-08-02 18:58:49', NULL),
-(32, 5, 9, 'Sprite', 'iEat', 3, 3, 'Sprite', 'sprite.jpg', 'sprite.jpg', '', 0, 'In Stock', '2018-08-02 18:59:50', NULL);
+(32, 5, 9, 'Sprite', 'iEat', 3, 3, 'Sprite', 'sprite.jpg', 'sprite.jpg', '', 0, 'In Stock', '2018-08-02 18:59:50', NULL),
+(33, 0, 0, 'Extra Cheese', 'IEat', 0, 0, '<br>', '', '', '', 0, 'In Stock', '2018-08-03 03:07:13', NULL),
+(300, 0, 0, 'Green peppers', 'IEat', 0, 0, '<br>', '', '', '', 0, 'In Stock', '2018-08-03 03:07:13', NULL),
+(500, 0, 0, 'Sausage', 'IEat', 0, 0, '<br>', '', '', '', 0, 'In Stock', '2018-08-03 03:07:13', NULL),
+(2000, 0, 0, 'Black Olives', 'IEat', 0, 0, '<br>', '', '', '', 0, 'In Stock', '2018-08-03 03:07:13', NULL),
+(2001, 0, 0, 'Pepperoni', 'IEat', 0, 0, '<br>', '', '', '', 0, 'In Stock', '2018-08-03 03:07:13', NULL),
+(20001, 0, 0, 'jalapeno peppers', 'IEat', 0, 0, '<br>', '', '', '', 0, 'In Stock', '2018-08-03 03:07:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -241,7 +248,8 @@ INSERT INTO `userlog` (`id`, `userEmail`, `userip`, `loginTime`, `logout`, `stat
 (27, 'garv123@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-02 21:46:35', '03-08-2018 03:45:49 AM', 1),
 (28, 'garv123@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-03 01:40:51', NULL, 0),
 (29, 'mostakim@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-03 01:41:38', '03-08-2018 07:13:28 AM', 1),
-(30, 'mostakim@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-03 01:44:54', NULL, 1);
+(30, 'mostakim@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-03 01:44:54', NULL, 1),
+(31, 'rahulgoyal0220@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-03 03:01:33', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -380,7 +388,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `ordertrackhistory`
@@ -398,7 +406,7 @@ ALTER TABLE `productreviews`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20002;
 
 --
 -- AUTO_INCREMENT for table `subcategory`
@@ -410,7 +418,7 @@ ALTER TABLE `subcategory`
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `users`
