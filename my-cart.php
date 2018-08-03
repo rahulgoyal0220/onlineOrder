@@ -40,15 +40,16 @@ header('location:login.php');
 else{
 
 	$quantity=$_POST['quantity'];
+    $addOn=$_POST['addOn'];
 	$pdd=$_SESSION['pid'];
-	$value=array_combine($pdd,$quantity);
+	$value=array_combine($pdd,$quantity, $addOn);
 
 
 		foreach($value as $qty=> $val34){
 
 
 
-mysqli_query($con,"insert into orders(userId,productId,quantity) values('".$_SESSION['id']."','$qty','$val34')");
+mysqli_query($con,"insert into orders(userId,productId,quantity, productAddOns) values('".$_SESSION['id']."','$qty','$val34','$addOn')");
 header('location:payment-method.php');
 }
 }
@@ -179,7 +180,7 @@ if(!empty($_SESSION['cart'])){
 			while($row = mysqli_fetch_array($query)){
 				$quantity=$_SESSION['cart'][$row['id']]['quantity'];
 				$subtotal= $_SESSION['cart'][$row['id']]['quantity']*$row['productPrice']+$row['shippingCharge'];
-				$addOns =$_SESSION['cart'][$row['id']]['addOn'];
+				$addOn =$_SESSION['cart'][$row['id']]['addOn'];
 				$totalprice += $subtotal;
 				$_SESSION['qnty']=$totalqunty+=$quantity;
 
