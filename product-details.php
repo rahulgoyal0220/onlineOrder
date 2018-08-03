@@ -11,7 +11,11 @@ if(isset($_GET['action']) && $_GET['action']=="add"){
         $query_p=mysqli_query($con,$sql_p);
         if(mysqli_num_rows($query_p)!=0){
             $row_p=mysqli_fetch_array($query_p);
-            $_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['productPrice']);
+            if ($row_p['category'] ==3){
+                $addOns = array("Extra Chese", "Peperoni");
+            }
+
+            $_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['productPrice'], "addOn" => $addOns);
             header('location:my-cart.php');
         }else{
             $message="Product ID is invalid";
@@ -164,10 +168,10 @@ if(isset($_POST['submit']))
 
                                             <div class="product-price">
 								<span class="price">
-									Rs. <?php echo htmlentities($rws['productPrice']);?>.00
+									$. <?php echo htmlentities($rws['productPrice']);?>.00
 								</span>
 
-                                                <span class="price-before-discount">Rs.<?php echo htmlentities($row['productPriceBeforeDiscount']);?></span>
+                                                <span class="price-before-discount">$.<?php echo htmlentities($row['productPriceBeforeDiscount']);?></span>
 
                                             </div><!-- /.product-price -->
 
@@ -413,20 +417,6 @@ if(isset($_POST['submit']))
                                 </div><!-- /.row -->
                             </div><!-- /.quantity-container -->
 
-                            <div class="product-social-link m-t-20 text-right">
-                                <span class="social-label">Share :</span>
-                                <div class="social-icons">
-                                    <ul class="list-inline">
-                                        <li><a class="fa fa-facebook" href="http://facebook.com/transvelo"></a></li>
-                                        <li><a class="fa fa-twitter" href="#"></a></li>
-                                        <li><a class="fa fa-linkedin" href="#"></a></li>
-                                        <li><a class="fa fa-rss" href="#"></a></li>
-                                        <li><a class="fa fa-pinterest" href="#"></a></li>
-                                    </ul><!-- /.social-icons -->
-                                </div>
-                            </div>
-
-
 
 
                         </div><!-- /.product-info -->
@@ -498,67 +488,7 @@ if(isset($_POST['submit']))
     <?php $cid=$row['category'];
     $subcid=$row['subCategory']; } ?>
     <!-- ============================================== UPSELL PRODUCTS ============================================== -->
-    <section class="section featured-product wow fadeInUp">
-        <h3 class="section-title">Realted Products </h3>
-        <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
 
-            <?php
-            $qry=mysqli_query($con,"select * from products where subCategory='$subcid' and category='$cid'");
-            while($rw=mysqli_fetch_array($qry))
-            {
-                ?>
-
-
-                <div class="item item-carousel">
-                    <div class="products">
-                        <div class="product">
-                            <div class="product-image">
-                                <div class="image">
-                                    <a href="product-details.php?pid=<?php echo htmlentities($rw['id']);?>"><img  src="assets/images/blank.gif" data-echo="admin/productimages/<?php echo htmlentities($rw['id']);?>/<?php echo htmlentities($rw['productImage1']);?>" width="150" height="240" alt=""></a>
-                                </div><!-- /.image -->
-
-
-                            </div><!-- /.product-image -->
-
-
-                            <div class="product-info text-left">
-                                <h3 class="name"><a href="product-details.php?pid=<?php echo htmlentities($rw['id']);?>"><?php echo htmlentities($rw['productName']);?></a></h3>
-                                <div class="rating rateit-small"></div>
-                                <div class="description"></div>
-
-                                <div class="product-price">
-				<span class="price">
-					Rs.<?php echo htmlentities($rw['productPrice']);?>			</span>
-                                    <span class="price-before-discount">Rs.
-                                        <?php echo htmlentities($rw['productPriceBeforeDiscount']);?></span>
-
-                                </div><!-- /.product-price -->
-
-                            </div><!-- /.product-info -->
-                            <div class="cart clearfix animate-effect">
-                                <div class="action">
-                                    <ul class="list-unstyled">
-                                        <li class="add-cart-button btn-group">
-                                            <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                <i class="fa fa-shopping-cart"></i>
-                                            </button>
-                                            <a href="product-details.php?page=product&action=add&id=<?php echo $rw['id']; ?>" class="lnk btn btn-primary">Add to cart</a>
-
-                                        </li>
-
-
-                                    </ul>
-                                </div><!-- /.action -->
-                            </div><!-- /.cart -->
-                        </div><!-- /.product -->
-
-                    </div><!-- /.products -->
-                </div><!-- /.item -->
-            <?php } ?>
-
-
-        </div><!-- /.home-owl-carousel -->
-    </section><!-- /.section -->
 
 
     <!-- ============================================== UPSELL PRODUCTS : END ============================================== -->

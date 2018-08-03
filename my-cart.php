@@ -179,6 +179,7 @@ if(!empty($_SESSION['cart'])){
 			while($row = mysqli_fetch_array($query)){
 				$quantity=$_SESSION['cart'][$row['id']]['quantity'];
 				$subtotal= $_SESSION['cart'][$row['id']]['quantity']*$row['productPrice']+$row['shippingCharge'];
+				$addOns =$_SESSION['cart'][$row['id']]['addOn'];
 				$totalprice += $subtotal;
 				$_SESSION['qnty']=$totalqunty+=$quantity;
 
@@ -194,10 +195,15 @@ if(!empty($_SESSION['cart'])){
 						</a>
 					</td>
 					<td class="cart-product-name-info">
-						<h4 class='cart-product-description'><a href="product-details.php?pid=<?php echo htmlentities($pd=$row['id']);?>" ><?php echo $row['productName'];
-
+						<h4 class='cart-product-description'>
+                            <a href="product-details.php?pid=<?php echo htmlentities($pd=$row['id']);?>" >
+                                <?php echo $row['productName'];
 $_SESSION['sid']=$pd;
-						 ?></a></h4>
+						 ?>
+                                <?php echo $row['addOns'];
+                                $_SESSION['sid']=$pd;
+                                ?>
+                            </a></h4>
 						<!--<div class="row">
 							<div class="col-sm-4">
 								<div class="rating rateit-small"></div>
