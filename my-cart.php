@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
 
 			}
 		}
-			echo "<script>alert('Your Cart hasbeen Updated');</script>";
+			echo "<script>alert('Your cart has been updated.');</script>";
 		}
 	}
 // Code for Remove a Product from Cart
@@ -24,7 +24,7 @@ if(!empty($_SESSION['cart'])){
 			
 				unset($_SESSION['cart'][$key]);
 		}
-			echo "<script>alert('Your Cart has been Updated');</script>";
+			echo "<script>alert('Your cart has been updated.');</script>";
 	}
 }
 // code for insert product in order table
@@ -119,16 +119,16 @@ header('location:payment-method.php');
 <?php include('includes/menu-bar.php');?>
 </header>
 <!-- ============================================== HEADER : END ============================================== -->
-<div class="breadcrumb">
+<!--<div class="breadcrumb">
 	<div class="container">
 		<div class="breadcrumb-inner">
 			<ul class="list-inline list-unstyled">
 				<li><a href="#">Home</a></li>
-				<li class='active'>Shopping Cart</li>
+				<li class='active'>Cart</li>
 			</ul>
-		</div><!-- /.breadcrumb-inner -->
-	</div><!-- /.container -->
-</div><!-- /.breadcrumb -->
+		</div>
+	</div>
+</div>-->
 
 <div class="body-content outer-top-xs">
 	<div class="container">
@@ -146,11 +146,10 @@ if(!empty($_SESSION['cart'])){
 					<th class="cart-romove item">Remove</th>
 					<th class="cart-description item">Image</th>
 					<th class="cart-product-name item">Product Name</th>
-			
 					<th class="cart-qty item">Quantity</th>
 					<th class="cart-sub-total item">Price Per unit</th>
-					<th class="cart-sub-total item">Shipping Charge</th>
-					<th class="cart-total last-item">Grandtotal</th>
+					<!--<th class="cart-sub-total item">Shipping Charge</th>-->
+					<th class="cart-total last-item">Total</th>
 				</tr>
 			</thead><!-- /thead -->
 			<tfoot>
@@ -158,10 +157,10 @@ if(!empty($_SESSION['cart'])){
 					<td colspan="7">
 						<div class="shopping-cart-btn">
 							<span class="">
-								<a href="index.php" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
+								<a href="index.php" class="btn btn-upper btn-primary outer-left-xs">Continue Ordering</a>
 								<input type="submit" name="submit" value="Update shopping cart" class="btn btn-upper btn-primary pull-right outer-right-xs">
 							</span>
-						</div><!-- /.shopping-cart-btn -->
+						</div>
 					</td>
 				</tr>
 			</tfoot>
@@ -199,21 +198,21 @@ if(!empty($_SESSION['cart'])){
 
 $_SESSION['sid']=$pd;
 						 ?></a></h4>
-						<div class="row">
+						<!--<div class="row">
 							<div class="col-sm-4">
 								<div class="rating rateit-small"></div>
 							</div>
 							<div class="col-sm-8">
-<?php $rt=mysqli_query($con,"select * from productreviews where productId='$pd'");
+<?php /*$rt=mysqli_query($con,"select * from productreviews where productId='$pd'");
 $num=mysqli_num_rows($rt);
 {
-?>
+*/?>
 								<div class="reviews">
-									( <?php echo htmlentities($num);?> Reviews )
+									( <?php /*echo htmlentities($num);*/?> Reviews )
 								</div>
-								<?php } ?>
+								<?php /*} */?>
 							</div>
-						</div><!-- /.row -->
+						</div>-->
 						
 					</td>
 					<td class="cart-product-quantity">
@@ -226,10 +225,10 @@ $num=mysqli_num_rows($rt);
 				             
 			              </div>
 		            </td>
-					<td class="cart-product-sub-total"><span class="cart-sub-total-price"><?php echo "Rs"." ".$row['productPrice']; ?>.00</span></td>
-<td class="cart-product-sub-total"><span class="cart-sub-total-price"><?php echo "Rs"." ".$row['shippingCharge']; ?>.00</span></td>
+					<td class="cart-product-sub-total"><span class="cart-sub-total-price">&dollar; <?php echo $row['productPrice']; ?>.00</span></td>
+                    <!--<td class="cart-product-sub-total"><span class="cart-sub-total-price"><?php /*echo "Rs"." ".$row['shippingCharge']; */?>.00</span></td>-->
 
-					<td class="cart-product-grand-total"><span class="cart-grand-total-price"><?php echo ($_SESSION['cart'][$row['id']]['quantity']*$row['productPrice']+$row['shippingCharge']); ?>.00</span></td>
+					<td class="cart-product-grand-total"><span class="cart-grand-total-price">&dollar; <?php echo ($_SESSION['cart'][$row['id']]['quantity']*$row['productPrice']+$row['shippingCharge']); ?>.00</span></td>
 				</tr>
 
 				<?php } }

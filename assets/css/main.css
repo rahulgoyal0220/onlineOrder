@@ -186,7 +186,7 @@ img[src="assets/images/blank.gif"] {
   padding-top: 100px;
 }
 .inner-top-sm {
-  padding-top: 80px;
+  padding-top: 20px;
 }
 .inner-top-xs {
   padding-top: 40px;
@@ -1042,8 +1042,12 @@ a {
   padding: 10px 0px 20px 0px;
 }
 .main-header .logo-holder {
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
+.main-header .logo-holder .logo{
+  margin-top: -5px;
+}
+
 .main-header .top-search-holder .contact-row {
   line-height: 20px;
   color: #9b9b9b;
@@ -2852,7 +2856,7 @@ a {
   font-size: 12px;
   line-height: 18px;
   color: #666666;
-  margin-bottom: 70px;
+  margin-bottom: 20px;
 }
 .footer .links-social .contact-info .footer-logo {
   margin-top: 10px;
@@ -5195,4 +5199,17 @@ a {
 }
 .body-content .sign-in-page .register-form .form-group {
   margin-bottom: 25px;
+}
+
+
+#product-tabs-slider{
+  margin: 60px 0;
+}
+
+.product-slider .owl-carousel .owl-item{
+  text-align: center;
+}
+
+.cnt-home .category-product .products .product{
+  text-align: center;
 }
