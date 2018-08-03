@@ -471,7 +471,8 @@ if(isset($_POST['submit']))
                                             <div>
                                                 <div>
                                                     <div>
-                                                        <span class="summary"><?php echo htmlentities($rvw['productName']);?>
+                                                        <input type="checkbox" name="vehicle" value=<?php echo htmlentities($rvw['productName']);?>>
+                                                        <?php echo htmlentities($rvw['productName']);?><br>
                                                         </span>
                                                       </div>
 
