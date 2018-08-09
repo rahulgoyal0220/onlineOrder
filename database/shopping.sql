@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2018 at 05:13 AM
+-- Generation Time: Aug 09, 2018 at 02:26 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -76,29 +76,40 @@ INSERT INTO `category` (`id`, `categoryName`, `categoryDescription`, `creationDa
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `userId` int(11) DEFAULT NULL,
-  `productId` varchar(255) DEFAULT NULL,
+  `productId` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `orderDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `paymentMethod` varchar(50) DEFAULT NULL,
-  `orderStatus` varchar(55) DEFAULT NULL
+  `orderStatus` varchar(55) DEFAULT NULL,
+  `productAddOns` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `userId`, `productId`, `quantity`, `orderDate`, `paymentMethod`, `orderStatus`) VALUES
-(1, 1, '3', 1, '2017-03-07 19:32:57', 'COD', NULL),
-(3, 1, '4', 1, '2017-03-10 19:43:04', 'Debit / Credit card', 'Delivered'),
-(4, 1, '17', 1, '2017-03-08 16:14:17', 'COD', 'in Process'),
-(5, 1, '3', 1, '2017-03-08 19:21:38', 'COD', NULL),
-(6, 1, '4', 1, '2017-03-08 19:21:38', 'COD', NULL),
-(7, 4, '2', 1, '2018-08-02 02:16:34', 'COD', NULL),
-(8, 4, '15', 1, '2018-08-02 02:16:34', 'COD', NULL),
-(9, 1, '1', 1, '2018-08-02 03:51:49', 'Debit / Credit card', NULL),
-(10, 1, '1', 2, '2018-08-02 04:14:52', 'Debit / Credit card', NULL),
-(11, 6, '21', 4, '2018-08-03 01:45:23', 'Debit / Credit card', NULL),
-(12, 4, '27', 1, '2018-08-03 03:01:40', 'COD', NULL);
+INSERT INTO `orders` (`id`, `userId`, `productId`, `quantity`, `orderDate`, `paymentMethod`, `orderStatus`, `productAddOns`) VALUES
+(11, 6, 21, 4, '2018-08-03 01:45:23', 'Debit / Credit card', NULL, ''),
+(12, 4, 27, 1, '2018-08-03 03:01:40', 'COD', NULL, ''),
+(13, 1, 27, 1, '2018-08-03 04:16:33', 'COD', NULL, ''),
+(14, 1, 21, 1, '2018-08-03 04:34:33', 'COD', NULL, 'test'),
+(15, 1, 21, 1, '2018-08-03 05:01:53', 'COD', NULL, ''),
+(16, 1, 27, 1, '2018-08-03 05:02:40', 'COD', NULL, 'test'),
+(17, 1, 21, 1, '2018-08-03 05:05:09', 'COD', NULL, 'test'),
+(18, 1, 22, 1, '2018-08-03 05:05:09', 'COD', NULL, 'test'),
+(19, 1, 27, 2, '2018-08-03 05:05:09', 'COD', NULL, 'test'),
+(20, 1, 28, 1, '2018-08-03 05:05:09', 'COD', NULL, 'test'),
+(21, 1, 21, 1, '2018-08-03 05:18:01', 'COD', NULL, 'test'),
+(22, 1, 22, 1, '2018-08-03 05:18:01', 'COD', NULL, 'test'),
+(23, 1, 27, 2, '2018-08-03 05:18:01', 'COD', NULL, 'test'),
+(24, 1, 28, 1, '2018-08-03 05:18:01', 'COD', NULL, 'test'),
+(25, 1, 21, 1, '2018-08-03 05:18:18', 'COD', NULL, 'test'),
+(26, 1, 22, 1, '2018-08-03 05:18:18', 'COD', NULL, 'test'),
+(27, 1, 27, 2, '2018-08-03 05:18:18', 'COD', NULL, 'test'),
+(28, 1, 28, 1, '2018-08-03 05:18:18', 'COD', NULL, 'test'),
+(29, 1, 21, 1, '2018-08-03 05:18:58', NULL, NULL, 'test'),
+(30, 1, 21, 1, '2018-08-03 05:19:38', NULL, NULL, 'test'),
+(31, 1, 21, 1, '2018-08-03 05:20:00', NULL, NULL, 'test');
 
 -- --------------------------------------------------------
 
@@ -249,7 +260,8 @@ INSERT INTO `userlog` (`id`, `userEmail`, `userip`, `loginTime`, `logout`, `stat
 (28, 'garv123@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-03 01:40:51', NULL, 0),
 (29, 'mostakim@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-03 01:41:38', '03-08-2018 07:13:28 AM', 1),
 (30, 'mostakim@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-03 01:44:54', NULL, 1),
-(31, 'rahulgoyal0220@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-03 03:01:33', NULL, 1);
+(31, 'rahulgoyal0220@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-03 03:01:33', '03-08-2018 10:29:57 PM', 1),
+(32, 'rahulgoyal0220@gmail.com', 0x3a3a3100000000000000000000000000, '2018-08-03 17:00:20', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -318,19 +330,23 @@ ALTER TABLE `admin`
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `PrimaryIndex` (`id`);
 
 --
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `OrderInex` (`id`),
+  ADD KEY `wwe` (`productId`);
 
 --
 -- Indexes for table `ordertrackhistory`
 --
 ALTER TABLE `ordertrackhistory`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `Histrory` (`id`);
 
 --
 -- Indexes for table `productreviews`
@@ -342,25 +358,29 @@ ALTER TABLE `productreviews`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `product` (`id`);
 
 --
 -- Indexes for table `subcategory`
 --
 ALTER TABLE `subcategory`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `sub` (`id`);
 
 --
 -- Indexes for table `userlog`
 --
 ALTER TABLE `userlog`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user` (`id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `userlog` (`id`);
 
 --
 -- Indexes for table `wishlist`
@@ -388,7 +408,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `ordertrackhistory`
@@ -418,7 +438,7 @@ ALTER TABLE `subcategory`
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -431,6 +451,16 @@ ALTER TABLE `users`
 --
 ALTER TABLE `wishlist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `wwe` FOREIGN KEY (`productId`) REFERENCES `products` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
