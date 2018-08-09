@@ -165,15 +165,15 @@ while($row=mysqli_fetch_array($sql))
 
                 <div id="category" class="category-carousel hidden-xs">
                     <div class="item">
-                        <div class="image">
+                       <!-- <div class="image">
                             <img src="assets/images/banners/cat-banner-1.jpg" alt="" class="img-responsive">
-                        </div>
+                        </div>-->
                         <div class="container-fluid">
                             <div class="caption vertical-top text-left">
-                                <div class="big-text">
+                            <!--    <div class="big-text">
                                     <br/>
                                 </div>
-
+-->
                                 <?php $sql = mysqli_query($con, "select categoryName  from category where id='$cid'");
                                 while ($row = mysqli_fetch_array($sql)) {
                                     ?>

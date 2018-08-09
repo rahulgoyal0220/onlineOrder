@@ -12,7 +12,7 @@ if(isset($_GET['action']) && $_GET['action']=="add"){
         if(mysqli_num_rows($query_p)!=0){
             $row_p=mysqli_fetch_array($query_p);
             if ($row_p['category'] ==3){
-                $info = "Extra Chesse, Peperoni";
+                $info = "Extra Cheesse, Peperoni";
             }
 
             $_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['productPrice'], "addOn" => $info);
